@@ -1,7 +1,7 @@
 # hishiryo 
-#### "consciousness beyond thought" ^_^
+*Consciousness beyond thought ^_^*
 
-Convert the data from a csv dataset into a graphic radial pixel map. I
+Convert the data from a csv dataset into a graphic radial pixel map.
 
 This little experiment aims at trying to quickly represent the content of a dataset and make it funny to discover it's  or patterns!
 
@@ -33,6 +33,7 @@ This version supports the following data formats : float, integers, Text as nomi
 
 
 function convertCSVToRadialBitmap(input_path,separator,output_path,radius,sort_by,glyph_type)
+
 -   `input path` is the path to your csv file (e.g. /home/user/iris.csv)
 -   `output path` is the path to your target image file (e.g. /home/user/iris.png) The fileformat you want is autodetected thanks to CV2 functionalities.
 -   `separator` is the character separator in your csv (e.g. ",")
@@ -44,6 +45,5 @@ function convertCSVToRadialBitmap(input_path,separator,output_path,radius,sort_b
 
 GNU General Public License v3.0
 
-#note
+### note
 Sorry for the crappy code, i will improve it with the time on the use of the package! If you have any feedback or comment on the use of this little experiment, feel free to tell me!
-
