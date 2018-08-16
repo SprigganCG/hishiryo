@@ -1,10 +1,13 @@
-# hishiryo (alpha)
+# hishiryo 
+#### "consciousness beyond thought" ^_^
 
-Convert a csv dataset into a radial pixel map
+Convert the data from a csv dataset into a graphic radial pixel map. I
 
-This little experiment aims at trying to quickly represent the content of a csv table.
+This little experiment aims at trying to quickly represent the content of a dataset and make it funny to discover it's  or patterns!
+
 Each datapoint (like a cell in an excel sheet) is converted into a pixel , and this pixel is diplayed on a circular graph.
-This version supports the following data formats : float, integers, Text as categories.
+
+This version supports the following data formats : float, integers, Text as nominal categories.
 
 ### How to install
 
@@ -18,7 +21,7 @@ This version supports the following data formats : float, integers, Text as cate
 
 ### How to use
 
-1 - find an appropriate csv. (more than 1000 rows will not render very well)
+1 - find an appropriate csv. (more than 100 rows will start to overload the result a little)
 
 2 - in python 3 :
 
