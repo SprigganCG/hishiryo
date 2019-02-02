@@ -13,7 +13,7 @@ class Hishiryo:
     def __init__(self):
         ''' Constructor for this class. '''
         # Set Version and default parameters
-        self.VERSION = "0.1"
+        self.VERSION = "0.1.1"
         self.config_background_color = (0, 0, 0)
         self.config_image_size_multiplyer = 1
         self.radial_render_radius = 2000
@@ -107,7 +107,7 @@ class Hishiryo:
 
         #define the distance between two rows on the disc
         interrow_distance = (disc_radius-inner_padding)/(bitmap_width)
-        print("interrow distance:",interrow_distance)
+        #print("interrow distance:",interrow_distance)
 
         # the polygon will be made of 4 points.
         #compute the distance between the two higher points
@@ -144,7 +144,7 @@ class Hishiryo:
         #  define the rotation of the coordinates based on the location of the datapoint in the rows
         rotation_angle = (current_row / dataset_row_count) * (math.pi * 2)
 
-        #  preform rotation of coordinates with an angle = to rotation angle
+        #  perform rotation of coordinates with an angle = to rotation angle
         new_coordinates = []
         for current_coordinates in initial_coordinates:
             new_coordinates.append(
@@ -185,6 +185,11 @@ class Hishiryo:
 
             print(id, current_column)
 
+            #if column is empty, fill it with 0
+            if len(dataset_df[current_column].value_counts()) == 0:
+                print('empty column')
+                dataset_df[current_column] = 0
+
             if dataset_df[current_column].dtypes == 'float64' or dataset_df[current_column].dtypes == 'int64':
 
                 if dataset_df[current_column].dtypes == 'float64':
@@ -196,8 +201,13 @@ class Hishiryo:
                 column_min = dataset_df[current_column].min()
                 column_max = dataset_df[current_column].max()
 
+                if dataset_df[current_column].dtypes == 'float64':
+                    dataset_df[current_column].fillna(0.0, inplace=True)
+                if dataset_df[current_column].dtypes == 'int64':
+                    dataset_df[current_column].fillna(0, inplace=True)
+
                 #  get the dataseries
-                dataset_df[current_column].fillna(0, inplace=True)
+
                 if(column_max - column_min)==0: column_data = (dataset_df[current_column])
                 else: column_data = ((dataset_df[current_column] - column_min) / (column_max - column_min))
                 column_data_rgb = [(int(round(x * 255 * colorTint[0])), int(round(x * 255 * colorTint[1])),
@@ -211,8 +221,11 @@ class Hishiryo:
 
                 colorTint = (0.5, 1.0, 0.5)
 
+                #  remove the nan and replace it with zero. (it's not an object for sure..)
+                dataset_df[current_column].fillna(0, inplace=True)
                 #  get the modalities.
                 column_labels = set(dataset_df[current_column].values.tolist())
+
                 # attribute colors to each modality
                 modalities_color_dict = defaultdict()
                 for current_label in column_labels:
