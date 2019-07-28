@@ -28,7 +28,12 @@ This version supports the following data formats : float, integers, Text as nomi
     from hishiryo import Hishiryo
 
     HishiryoConverter = Hishiryo.Hishiryo()
-
+    
+    input_path = "/home/user/iris.csv"
+    separator = ','
+    output_path = "/home/user/iris.png"
+    radius = 500
+    
     HishiryoConverter.convertCSVToRadialBitmap(input_path,separator,output_path,radius,None,"Dot")
 
 
