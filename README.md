@@ -7,17 +7,20 @@ This little experiment aims at trying to quickly represent the content of a data
 
 Each datapoint (like a cell in an excel sheet) is converted into a pixel , and this pixel is diplayed on a circular graph.
 
-This version supports the following column data formats : float, integers and Text as nominal categories.
+This version supports the following column data formats : float, integers and text as nominal categories.
 
 ## How to install
 
-PyPI
+With PyPI
+
     pip install hishiryo
 
 ## Dependencies
 
 - Pandas
 - CV2 (OpenCV)
+- Pillow
+- svgwrite
 
 ## How to use
 
@@ -31,7 +34,7 @@ PyPI
 
     HishiryoConverter.convertCSVToRadialBitmap(input_path,separator,output_path,radius,None,"Dot")
 
-function convertCSVToRadialBitmap(input_path,separator,output_path,radius,sort_by,glyph_type)
+Arguments :
 
 - `input path` is the path to your csv file (e.g. /home/user/iris.csv)
 - `output path` is the path to your target image file (e.g. /home/user/iris.png) The fileformat you want is autodetected thanks to CV2 functionalities.
@@ -53,6 +56,7 @@ See below an example of a visualisation generated from the train titanic dataset
 ![output example](thumbnail_example.png)
 
 The 12 columns of the dataset are represented as 12 circular rows. The first column is rendered as the inner circle, and the last as the outer one.
+
 
 Here is an overview of the MNIST train dataset, sort by label
 ![output example](thumbnail_mnist.png)
