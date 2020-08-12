@@ -5,15 +5,16 @@ from typing import Any, Tuple, Union
 
 import numpy as np
 import pandas as pd
-import svgwrite
+
 import cv2
+import svgwrite
+
 
 class Hishiryo:
 
     def __init__(self):
         ''' Constructor for this class. '''
-        # Set Version and default parameters
-        self.VERSION = "0.1.1"
+        # Set default parameters
         self.config_background_color = (0, 0, 0)
         self.config_image_size_multiplyer = 1
         self.radial_render_radius = 2000
@@ -21,11 +22,8 @@ class Hishiryo:
         self.radial_render_inner_padding = int(self.radial_render_radius * 0.4)
         self.radial_render_circle_radius = 0.2
 
-    def getVersion(self):
-        return self.VERSION
-
-    def get_radial_coordinates(self,x_center, y_center, inner_padding, dataset_column_count, dataset_row_count,
-                               current_column, current_row,disc_radius):
+    def get_radial_coordinates(self, x_center, y_center, inner_padding, dataset_column_count, dataset_row_count,
+                               current_column, current_row, disc_radius):
         """
         Compute coordinates of a datapoint for radial representation
 
@@ -121,7 +119,6 @@ class Hishiryo:
         circle_radius = (((current_column / bitmap_width) * disc_radius) + inner_padding) - (0.5*interrow_distance)
         current_row_perimeter = 2 * math.pi * circle_radius
         inter_glyph_distance_bottom = (current_row_perimeter / bitmap_height)
-
 
         # Properties of the square
         square_height = interrow_distance
@@ -287,7 +284,6 @@ class Hishiryo:
         radial_render_height = self.radial_render_radius * 2 + self.radial_render_outer_padding * 2 + self.radial_render_inner_padding * 2
         radial_render_origin_coordinates = (int(round(radial_render_width / 2)), int(round(radial_render_height / 2)))
 
-
         #  initialize the rendered svg
 
         # proceed to drawing
@@ -341,11 +337,11 @@ class Hishiryo:
     def convertCSVToRadialBitmap(self,input_dataset_path,separator,output_image_radial_opencv_render_path,radius=None,sort_by=None,glyph_type="Dot"):
 
 
-        #load the dataset
+        #  load the dataset
         print("Load")
         dataset_df = pd.read_csv(input_dataset_path,sep=separator)
 
-        #check if a radius is defined by the user
+        #  check if a radius is defined by the user
         if radius is None:
             pass
         else :
@@ -354,21 +350,21 @@ class Hishiryo:
             self.radial_render_inner_padding = int(self.radial_render_radius * 0.4)
             self.radial_render_circle_radius = 0.2
 
-        #check if a sort is required by user
+        #  check if a sort is required by user
         if sort_by is None: pass
         else :
             dataset_df.sort_values(by=sort_by, ascending=False, na_position='first',inplace=True)
 
-        #convert it to bitmap
+        #  convert it to bitmap
         print("Convert")
         current_bitmap = Hishiryo.processDataFrame2Bitmap(self, dataset_df)
 
         bitmap_width = dataset_df.shape[1]
         bitmap_height = dataset_df.shape[0]
 
-        # render a second image as a radial
+        #  render a second image as a radial
 
-        # compute origin coordinates
+        #  compute origin coordinates
         radial_render_width = self.radial_render_radius * 2 + self.radial_render_outer_padding * 2 + self.radial_render_inner_padding * 2
         radial_render_height = self.radial_render_radius * 2 + self.radial_render_outer_padding * 2 + self.radial_render_inner_padding * 2
         radial_render_origin_coordinates = (int(round(radial_render_width / 2)), int(round(radial_render_height / 2)))
@@ -546,7 +542,3 @@ class Hishiryo:
             glyph_size[0] = interrow_distance
             glyph_size[1] = interrow_distance
         return glyph_size
-
-
-
-

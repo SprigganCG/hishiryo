@@ -104,3 +104,9 @@ temp/
 
 # mypy
 .mypy_cache/
+
+# pictures
+*.png
+
+# csv
+*.csv
