@@ -43,6 +43,13 @@ Arguments :
 - `sort_by` is the name of the column or the list of column you want to sort you data. (e.g. "Sepal.Length", or ["Sepal.Length","Sepal.Width"])
 - `glyph_type` is the type of representation you want for the pixels. it can be one among the following : "Dot","Square" or "Polygon"
 
+        input_path = "path/to/your/csv/file.csv"
+        output_path = "path/to/your/rendered/image.png"
+        separator = ","
+        radius = 3000
+        sort_by = None
+        glyph_type = "Polygon"
+
 Colors are assigned based on the variable type.
 
 - Blue circles represent integer values
