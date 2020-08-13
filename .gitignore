@@ -104,3 +104,6 @@ temp/
 
 # mypy
 .mypy_cache/
+
+# pictures
+tests/integration/*.png
