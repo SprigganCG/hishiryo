@@ -16,7 +16,7 @@ setuptools.setup(
     packages=setuptools.find_packages('src'),
     package_dir={'': 'src'},
     py_modules=[splitext(basename(path))[0] for path in glob('src/*.py')],
-    install_requires=['pandas', 'Pillow', 'numpy', 'opencv-python', 'svgwrite'],
+    install_requires=['pandas', 'Pillow', 'numpy', 'opencv-python'],
     classifiers=[
         "Development Status :: 4 - Beta",
         "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",

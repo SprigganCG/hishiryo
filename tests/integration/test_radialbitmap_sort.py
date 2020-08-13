@@ -17,8 +17,6 @@ def test_render_dot_bitmap_from_csv():
     radius = 3000
     sort_by = ["Survived", "Pclass", "Sex", "Age"]
     glyph_type = "Polygon"
-    print(os.path.realpath(__file__),
-          os.path.dirname(os.path.realpath(__file__)))
 
     # Instanciate Hishiryo
     HishiryoConverter = Hishiryo.Hishiryo()
