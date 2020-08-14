@@ -365,6 +365,10 @@ class Hishiryo:
                     cv2.circle(opencv_image, (int(current_radial_coordinates[0]), int(current_radial_coordinates[1])),
                                int(radial_render_circle_radius), (int(pixel_color[2]), int(pixel_color[1]), int(pixel_color[0])),
                                thickness=-1, lineType=8, shift=0)
+                    cv2.circle(opencv_image, (int(current_radial_coordinates[0]), int(current_radial_coordinates[1])),
+                               int(radial_render_circle_radius), (int(pixel_color[2]/2), int(pixel_color[1]/2), int(pixel_color[0]/2)),
+                               thickness=1, lineType=8, shift=0)
+
 
                 if glyph_type == "Square":
 
@@ -381,6 +385,7 @@ class Hishiryo:
 
                     current_square_radial_coordinates = np.array(current_square_radial_coordinates,np.int32)
                     cv2.fillPoly(opencv_image, [current_square_radial_coordinates],(int(pixel_color[2]), int(pixel_color[1]), int(pixel_color[0])),lineType=0,shift=0)
+                    cv2.polylines(opencv_image, [current_square_radial_coordinates],True,(int(pixel_color[2]/2), int(pixel_color[1]/2), int(pixel_color[0]/2)),thickness=1,lineType=8,shift=0)
 
                 if glyph_type == "Polygon":
 
@@ -395,6 +400,7 @@ class Hishiryo:
 
                     current_square_radial_coordinates = np.array(current_square_radial_coordinates,np.int32)
                     cv2.fillPoly(opencv_image, [current_square_radial_coordinates],(int(pixel_color[2]), int(pixel_color[1]), int(pixel_color[0])),lineType=0,shift=0)
+                    cv2.polylines(opencv_image, [current_square_radial_coordinates],True,(int(pixel_color[2]/2), int(pixel_color[1]/2), int(pixel_color[0]/2)),thickness=1,lineType=8,shift=0)
 
         #  write images to disk
         print("write radial opencv image")
