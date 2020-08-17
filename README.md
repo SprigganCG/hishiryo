@@ -11,7 +11,7 @@ This version supports the following column data formats : float, integers and te
 
 ## How to install
 
-With PyPI
+With PyPI (Make sure your pip is up to date as it can interfere with CV2 package install)
 
     pip install hishiryo
 
