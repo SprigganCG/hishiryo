@@ -34,7 +34,7 @@ def test_render_square_bitmap_from_csv():
     )
     output_path = os.path.dirname(os.path.realpath(__file__)) + "/output-square.png"
     separator = ","
-    radius = 3000
+    radius = 250
     sort_by = "PassengerId"
     glyph_type = "Square"
 

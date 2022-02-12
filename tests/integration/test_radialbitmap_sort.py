@@ -13,7 +13,7 @@ def test_render_dot_bitmap_from_csv():
     )
     output_path = os.path.dirname(os.path.realpath(__file__)) + "/output-sort.png"
     separator = ","
-    radius = 3000
+    radius = 250
     sort_by = ["Survived", "Pclass", "Sex", "Age"]
     glyph_type = "Polygon"
 
