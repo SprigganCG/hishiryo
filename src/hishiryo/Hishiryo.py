@@ -224,8 +224,21 @@ class Hishiryo:
 
                 if(column_max - column_min)==0: column_data = (dataset_df[current_column])
                 else: column_data = ((dataset_df[current_column] - column_min) / (column_max - column_min))
-                column_data_rgb = [(int(round(x * 255 * colorTint[0])), int(round(x * 255 * colorTint[1])),
-                                    int(round(x * 255 * colorTint[2]))) for x in column_data]
+
+                # coerce column data to integer in rare cases of ValueError
+                try:
+                    column_data_rgb = [(int(round(x * 255 * colorTint[0])), int(round(x * 255 * colorTint[1])),
+                                        int(round(x * 255 * colorTint[2]))) for x in column_data]
+                
+                except ValueError:
+                    print("Problem with value for column",column_data)
+                    column_data = pd.to_numeric(column_data, errors='coerce')
+                    column_data.fillna(value=0,
+                                       inplace=True
+                                       )
+
+                    column_data_rgb = [(int(round(x * 255 * colorTint[0])), int(round(x * 255 * colorTint[1])),
+                                        int(round(x * 255 * colorTint[2]))) for x in column_data]                    
 
                 # write the pixels
                 for current_pixel in range(0, bitmap_height):
