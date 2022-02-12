@@ -6,7 +6,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="hishiryo", 
-    version="0.0.1",
+    version="0.0.2",
     author="Nicolas Boisseau",
     author_email="spriggancg@gmail.com",
     description="Render a dataset into a picture",
