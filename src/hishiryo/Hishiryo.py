@@ -23,12 +23,12 @@ class Hishiryo(_toolbox.Mixin):
         # define the padding size inside the circle
         self.radial_render_inner_padding = int(self.radial_render_radius * 0.4)
 
-    def convertCSVToBitmap(self, input_dataset_path, output_image_path):
+    def convertCSVToBitmap(self, input_dataset_path, output_image_path, separator):
         """
         Convert an input csv file into a simple bitmap and save it on disk
         """
         #  load the dataset
-        dataset_df = pd.read_csv(input_dataset_path)
+        dataset_df = pd.read_csv(input_dataset_path, sep=separator,low_memory=True)
 
         #  convert it to bitmap
         current_bitmap = Hishiryo.processDataFrame2Bitmap(self, dataset_df)
@@ -68,6 +68,7 @@ class Hishiryo(_toolbox.Mixin):
             )
 
         #  convert it to bitmap and keep it in memory
+        print(dataset_df.shape)
         current_bitmap = Hishiryo.processDataFrame2Bitmap(self, dataset_df)
 
         bitmap_width = dataset_df.shape[1]

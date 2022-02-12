@@ -11,6 +11,7 @@ def test_render_bitmap_from_csv():
     input_path = (
         os.path.dirname(os.path.realpath(__file__)) + "/../fixtures/mnist_test.csv"
     )
+
     output_path = (
         os.path.dirname(os.path.realpath(__file__)) + "/output_bitmap_mnist.png"
     )
@@ -20,4 +21,5 @@ def test_render_bitmap_from_csv():
     assert HishiryoConverter.convertCSVToBitmap(
         input_path,
         output_path,
+        ","
     )
