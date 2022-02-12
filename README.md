@@ -22,11 +22,11 @@ With PyPI (Make sure your pip is up to date as it can interfere with CV2 package
 - Pillow
 - svgwrite
 
-## How to use
+## How to use radial rendering
 
 1 - find an appropriate csv. (more than 100 rows will start to overload the result a little)
 
-2 - in python 3 in your code or from a Jupyter notebook :
+2 - From your code or from a Jupyter notebook :
 
     from hishiryo import Hishiryo
 
@@ -62,7 +62,7 @@ Colors are assigned based on the variable type.
 - Random colors are assigned to categorical variables.
 - Black is the default value for value 0 or when there is no data
 
-## Output example
+## Radial bitmap rendering examples
 
 See below an example of a visualisation generated from the train titanic dataset
 ![output example](thumbnail_example.png)
@@ -72,6 +72,27 @@ The 12 columns of the dataset are represented as 12 circular rows. The first col
 
 Here is an overview of the MNIST train dataset, sort by label
 ![output example](thumbnail_mnist.png)
+
+
+## How to use simple bitmap rendering
+
+Another way is to render your csv as a simple bitmap, without radial representation.
+
+    from hishiryo import Hishiryo
+
+    HishiryoConverter = Hishiryo.Hishiryo()
+
+    input_path = "/home/user/iris.csv"
+    separator = ','
+    output_path = "/home/user/iris.png"
+
+    HishiryoConverter.convertCSVToBitmap(input_path,
+                                         output_path,
+                                         )
+
+## simple bitmap rendering example
+
+Here is an extract of the MNIST test dataset () ![output example](thumbnail_mnist_test.png)
 
 ## Licence
 
