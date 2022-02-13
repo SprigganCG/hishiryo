@@ -88,6 +88,7 @@ Another way is to render your csv as a simple bitmap, without radial representat
 
     HishiryoConverter.convertCSVToBitmap(input_path,
                                          output_path,
+                                         separator,
                                          )
 
 ## simple bitmap rendering example
