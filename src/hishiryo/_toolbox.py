@@ -269,9 +269,9 @@ class Mixin:
                 column_max = dataset_df[current_column].max()
 
                 if dataset_df[current_column].dtypes == "float64":
-                    dataset_df[current_column].fillna(0.0, inplace=True)
+                    dataset_df[current_column] = dataset_df[current_column].fillna(0.0)
                 if dataset_df[current_column].dtypes == "int64":
-                    dataset_df[current_column].fillna(0, inplace=True)
+                    dataset_df[current_column] = dataset_df[current_column].fillna(0)
 
                 #  get the dataseries
 
@@ -295,7 +295,7 @@ class Mixin:
 
                 except ValueError:
                     column_data = pd.to_numeric(column_data, errors="coerce")
-                    column_data.fillna(value=0, inplace=True)
+                    column_data = column_data.fillna(0)
 
                     column_data_rgb = [
                         (
@@ -308,18 +308,19 @@ class Mixin:
 
                 # write the pixels
                 for current_pixel in range(0, bitmap_height):
-                    current_bitmap_opencv[current_pixel, id] = [
+                    vals = [
                         column_data_rgb[current_pixel][2],
                         column_data_rgb[current_pixel][1],
                         column_data_rgb[current_pixel][0],
                     ]
+                    current_bitmap_opencv[current_pixel, id] = np.clip(vals, 0, 255).astype(np.uint8)
 
             elif dataset_df[current_column].dtypes == "object":
 
                 colorTint = (0.5, 1.0, 0.5)
 
                 #  remove the nan and replace it with zero. (it's not an object for sure..)
-                dataset_df[current_column].fillna(0, inplace=True)
+                dataset_df[current_column] = dataset_df[current_column].fillna(0)
                 #  get the modalities.
                 column_labels = set(dataset_df[current_column].values.tolist())
 
@@ -333,7 +334,7 @@ class Mixin:
                     )
 
                 #  get the dataseries
-                dataset_df[current_column].fillna(0, inplace=True)
+                dataset_df[current_column] = dataset_df[current_column].fillna(0)
                 column_data = dataset_df[current_column].values.tolist()
                 column_data_rgb = [
                     (
@@ -346,11 +347,12 @@ class Mixin:
 
                 # write the pixels
                 for current_pixel in range(0, bitmap_height):
-                    current_bitmap_opencv[current_pixel, id] = [
+                    vals = [
                         column_data_rgb[current_pixel][2],
                         column_data_rgb[current_pixel][1],
                         column_data_rgb[current_pixel][0],
                     ]
+                    current_bitmap_opencv[current_pixel, id] = np.clip(vals, 0, 255).astype(np.uint8)
             else:
                 print("Column type unknown")
 
