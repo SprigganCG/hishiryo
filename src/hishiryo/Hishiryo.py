@@ -68,7 +68,6 @@ class Hishiryo(_toolbox.Mixin):
             )
 
         #  convert it to bitmap and keep it in memory
-        print(dataset_df.shape)
         current_bitmap = Hishiryo.processDataFrame2Bitmap(self, dataset_df)
 
         bitmap_width = dataset_df.shape[1]
@@ -108,8 +107,6 @@ class Hishiryo(_toolbox.Mixin):
         # should put columnar data as contour of a circle
         for current_pixel_row in range(0, bitmap_width):
 
-            print("Render CSV Column:", current_pixel_row)
-
             # compute glyph radius if we use dot glyph
             if glyph_type == "Dot":
                 # compute the perimeter of the circle, check how many datapoint on the circle, divide to obtain de diameter, divide by two for the radius of the glyph
@@ -121,7 +118,6 @@ class Hishiryo(_toolbox.Mixin):
                     self.radial_render_radius,
                     self.radial_render_inner_padding,
                 )
-                print("Glyph Estimated:", radial_render_circle_radius)
 
             # compute glyph size (witdh & weight) if we use dot Square
             if glyph_type == "Square":
@@ -133,7 +129,6 @@ class Hishiryo(_toolbox.Mixin):
                     self.radial_render_radius,
                     self.radial_render_inner_padding,
                 )
-                print("Glyph Size:", glyph_size)
 
             # compute glyph size (witdh & weight) if we use dot Square
             if glyph_type == "Polygon":
@@ -145,7 +140,6 @@ class Hishiryo(_toolbox.Mixin):
                     self.radial_render_radius,
                     self.radial_render_inner_padding,
                 )
-                print("Glyph Size:", glyph_shape)
 
             for current_pixel_column in range(0, bitmap_height):
 
@@ -250,7 +244,6 @@ class Hishiryo(_toolbox.Mixin):
                     )
 
         #  write images to disk
-        print("write radial opencv image")
         #  out_resized = cv2.resize(opencv_image,None, fx=0.5, fy=0.5,interpolation = cv2.INTER_AREA)
         cv2.imwrite(output_image_radial_opencv_render_path, opencv_image)
 

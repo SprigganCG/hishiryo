@@ -228,18 +228,12 @@ class Mixin:
         """
 
         #  2 Read the dataset specs
-        print("Number of rows", dataset_df.shape[0])
-        print("Number of columns", dataset_df.shape[1])
-
         #  3 define the size of the bitmap
         bitmap_width = dataset_df.shape[1]
         bitmap_height = dataset_df.shape[0]
         datapoint_count = bitmap_height * bitmap_width
 
-        print("Datapoints to display:", datapoint_count)
-
         #  4 initialize the image in memory
-        print("create image")
         current_bitmap_opencv = np.zeros((bitmap_height, bitmap_width, 3), np.uint8)
 
         #  5 process each column data, and fill the bitmap with dynamic colors
@@ -247,11 +241,8 @@ class Mixin:
         #  for each dataset column, detect the id and the type. if float, then populate the corresponding pixels on the bitmap applying a simple normalisation.
         for id, current_column in enumerate(dataset_df.columns):
 
-            print(id, current_column)
-
             # if column is empty, fill it with 0
             if len(dataset_df[current_column].value_counts()) == 0:
-                print("empty column")
                 dataset_df[current_column] = 0
 
             if (
@@ -354,7 +345,7 @@ class Mixin:
                     ]
                     current_bitmap_opencv[current_pixel, id] = np.clip(vals, 0, 255).astype(np.uint8)
             else:
-                print("Column type unknown")
+                pass  # Column type unknown, skip silently
 
         return current_bitmap_opencv
 
@@ -416,7 +407,6 @@ class Mixin:
         interrow_distance = (
             (radial_render_radius - radial_render_inner_padding) / (bitmap_width) / 2
         )
-        print(interrow_distance)
 
         #  the height must not be superior to the distance to prevent overlap
         if glyph_height > interrow_distance:
